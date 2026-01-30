@@ -69,20 +69,20 @@ export default function Contact() {
             className="md:col-span-2 space-y-6"
           >
             {/* Direct Email */}
-            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-6">
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-3 sm:mb-4 flex items-center gap-2">
                 <Mail size={18} className="text-[var(--accent)]" />
                 Direct Email
               </h3>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="text-[var(--accent)] hover:underline break-all"
+                className="text-sm sm:text-base text-[var(--accent)] hover:underline break-all"
               >
                 {personalInfo.email}
               </a>
               <button
                 onClick={handleCopyEmail}
-                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 border border-[var(--border-subtle)] rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
+                className="mt-3 sm:mt-4 w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-[var(--border-subtle)] rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all active:scale-95"
               >
                 {copied ? (
                   <>
@@ -99,34 +99,34 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-6">
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
+            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-3 sm:mb-4">
                 Connect With Me
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all"
+                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all active:scale-[0.98]"
                 >
-                  <Github size={20} className="text-[var(--text-secondary)]" />
+                  <Github size={20} className="text-[var(--text-secondary)] flex-shrink-0" />
                   <span className="text-sm text-[var(--text-primary)]">GitHub</span>
                 </a>
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all"
+                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all active:scale-[0.98]"
                 >
-                  <Linkedin size={20} className="text-[var(--text-secondary)]" />
+                  <Linkedin size={20} className="text-[var(--text-secondary)] flex-shrink-0" />
                   <span className="text-sm text-[var(--text-primary)]">LinkedIn</span>
                 </a>
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all"
+                  className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--border-subtle)] transition-all active:scale-[0.98]"
                 >
-                  <Mail size={20} className="text-[var(--text-secondary)]" />
+                  <Mail size={20} className="text-[var(--text-secondary)] flex-shrink-0" />
                   <span className="text-sm text-[var(--text-primary)]">Email</span>
                 </a>
               </div>
@@ -142,19 +142,19 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-6"
+              className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-4 sm:p-6"
             >
               {submitted && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-[var(--accent-muted)] rounded-lg text-[var(--accent)] text-sm"
+                  className="mb-4 sm:mb-6 p-3 sm:p-4 bg-[var(--accent-muted)] rounded-lg text-[var(--accent)] text-sm"
                 >
                   Thanks for reaching out! I&apos;ll get back to you soon.
                 </motion.div>
               )}
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {/* Name */}
                 <div>
                   <label

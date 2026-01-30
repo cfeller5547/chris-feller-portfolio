@@ -28,23 +28,19 @@ export default function About() {
                 className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-primary)] border border-[var(--border-subtle)] overflow-hidden group"
               >
                 {/* Mint outline on hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[var(--accent)]/30 transition-all duration-300" />
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[var(--accent)]/30 transition-all duration-300 z-10" />
 
-                {/* Placeholder Avatar */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-[var(--accent-muted)] flex items-center justify-center">
-                    <span className="text-5xl md:text-6xl font-bold text-[var(--accent)]">
-                      {personalInfo.name
-                        .split(' ')
-                        .map((n) => n[0])
-                        .join('')}
-                    </span>
-                  </div>
-                </div>
+                {/* Profile Image */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/profile.png"
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover object-top"
+                />
 
                 {/* Decorative elements */}
-                <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-[var(--accent)]" />
-                <div className="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-[var(--accent)]/50" />
+                <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-[var(--accent)] z-10" />
+                <div className="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-[var(--accent)]/50 z-10" />
               </motion.div>
 
               {/* Floating Badge */}
@@ -74,26 +70,26 @@ export default function About() {
               isInView={isInView}
             />
 
-            <p className="text-lg text-[var(--text-secondary)] mb-8 mt-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-6 sm:mb-8 mt-4 sm:mt-6 leading-relaxed">
               {personalInfo.bio}
             </p>
 
             {/* What I Optimize For */}
-            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-6">
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+            <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-3 sm:mb-4 flex items-center gap-2">
                 <Zap size={18} className="text-[var(--accent)]" />
                 What I Optimize For
               </h3>
-              <ul className="grid sm:grid-cols-2 gap-3">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {personalInfo.optimizesFor.map((item, index) => (
                   <motion.li
                     key={item}
                     initial={{ opacity: 0, x: -10 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-2 text-sm text-[var(--text-secondary)]"
+                    className="flex items-center gap-2 text-xs sm:text-sm text-[var(--text-secondary)]"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" />
                     {item}
                   </motion.li>
                 ))}

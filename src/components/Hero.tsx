@@ -175,14 +175,14 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
             >
               {/* Stats Chips */}
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center lg:justify-start mb-5 sm:mb-6">
                 {Object.entries(personalInfo.stats).map(([key, value], index) => (
                   <motion.span
                     key={key}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 * index, duration: 0.4 }}
-                    className="px-3 py-1 text-xs font-medium bg-[var(--accent-muted)] text-[var(--accent)] rounded-full"
+                    className="px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium bg-[var(--accent-muted)] text-[var(--accent)] rounded-full"
                   >
                     {value} {key === 'yearsExperience' ? 'years' : key === 'projectsShipped' ? 'projects' : 'technologies'}
                   </motion.span>
@@ -280,17 +280,17 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.button
             onClick={scrollToProjects}
-            className="flex flex-col items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+            className="flex flex-col items-center gap-1.5 sm:gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors p-2"
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             aria-label="Scroll to projects"
           >
-            <span className="text-xs uppercase tracking-wider">Scroll</span>
-            <ArrowDown size={20} />
+            <span className="text-[10px] sm:text-xs uppercase tracking-wider">Scroll</span>
+            <ArrowDown size={18} className="sm:w-5 sm:h-5" />
           </motion.button>
         </motion.div>
       </motion.div>

@@ -31,12 +31,12 @@ export default function Footer() {
           </div>
 
           {/* Center - Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              className="p-2.5 sm:p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors active:scale-95"
               aria-label="GitHub"
             >
               <Github size={20} />
@@ -45,14 +45,14 @@ export default function Footer() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              className="p-2.5 sm:p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors active:scale-95"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              className="p-2.5 sm:p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors active:scale-95"
               aria-label="Email"
             >
               <Mail size={20} />

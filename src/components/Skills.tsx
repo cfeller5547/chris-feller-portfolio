@@ -9,16 +9,16 @@ import {
   Server,
   Cloud,
   Brain,
-  Wrench,
+  Database,
   Scan,
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
+  'AI Tools': Brain,
   Frontend: Layout,
   Backend: Server,
+  Database: Database,
   'Cloud & DevOps': Cloud,
-  'Data & AI': Brain,
-  'Tooling & Practices': Wrench,
 };
 
 const levelColors = {
@@ -124,10 +124,10 @@ function TechMarquee() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="mt-16"
+      className="mt-12 sm:mt-16"
     >
-      <div className="text-center mb-6">
-        <span className="text-sm text-[var(--text-secondary)] uppercase tracking-wider">
+      <div className="text-center mb-4 sm:mb-6">
+        <span className="text-xs sm:text-sm text-[var(--text-secondary)] uppercase tracking-wider">
           Technologies I work with
         </span>
       </div>
@@ -135,7 +135,7 @@ function TechMarquee() {
       {/* Marquee container */}
       <div className="marquee-container relative overflow-hidden">
         <motion.div
-          className="flex items-center gap-12 whitespace-nowrap"
+          className="flex items-center gap-6 sm:gap-12 whitespace-nowrap"
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             duration: 30,
@@ -144,13 +144,12 @@ function TechMarquee() {
           }}
         >
           {logos.map((logo, idx) => (
-            <motion.span
+            <span
               key={`${logo}-${idx}`}
-              className="text-lg font-medium text-[var(--text-secondary)]/50 hover:text-[var(--accent)] transition-colors duration-300 cursor-default"
-              whileHover={{ scale: 1.05 }}
+              className="text-sm sm:text-lg font-medium text-[var(--text-secondary)]/50 cursor-default"
             >
               {logo}
-            </motion.span>
+            </span>
           ))}
         </motion.div>
       </div>
@@ -183,25 +182,25 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-6 mt-12 mb-10"
+          className="flex flex-wrap justify-center gap-3 sm:gap-6 mt-8 sm:mt-12 mb-8 sm:mb-10 px-2"
         >
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-xs rounded font-medium bg-[var(--accent)] text-[var(--bg-primary)]">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="px-2 py-0.5 text-[10px] sm:text-xs rounded font-medium bg-[var(--accent)] text-[var(--bg-primary)]">
               Core
             </span>
-            <span className="text-sm text-[var(--text-secondary)]">Daily driver</span>
+            <span className="text-xs sm:text-sm text-[var(--text-secondary)]">Daily driver</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-xs rounded font-medium bg-[var(--accent-muted)] text-[var(--accent)]">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="px-2 py-0.5 text-[10px] sm:text-xs rounded font-medium bg-[var(--accent-muted)] text-[var(--accent)]">
               Strong
             </span>
-            <span className="text-sm text-[var(--text-secondary)]">Production experience</span>
+            <span className="text-xs sm:text-sm text-[var(--text-secondary)]">Production exp</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-xs rounded font-medium bg-[var(--border-subtle)] text-[var(--text-secondary)]">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="px-2 py-0.5 text-[10px] sm:text-xs rounded font-medium bg-[var(--border-subtle)] text-[var(--text-secondary)]">
               Familiar
             </span>
-            <span className="text-sm text-[var(--text-secondary)]">Working knowledge</span>
+            <span className="text-xs sm:text-sm text-[var(--text-secondary)]">Working knowledge</span>
           </div>
         </motion.div>
 

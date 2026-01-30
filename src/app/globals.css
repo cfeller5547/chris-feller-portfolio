@@ -99,6 +99,17 @@ body::after {
   border-color: var(--border-hover);
 }
 
+/* Card hover effect with green glow */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+  border-color: var(--border-hover);
+}
+
 /* Accent glow */
 .glow-accent {
   box-shadow: 0 0 20px var(--accent-glow);
@@ -106,6 +117,19 @@ body::after {
 
 .glow-accent-sm {
   box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Aurora gradient */
+.aurora {
+  background: radial-gradient(ellipse at top, rgba(0, 230, 118, 0.12) 0%, transparent 50%);
 }
 
 /* Text styles */
@@ -190,4 +214,30 @@ body::after {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Touch-friendly tap highlight */
+@media (hover: none) {
+  button, a, [role="button"] {
+    -webkit-tap-highlight-color: rgba(0, 230, 118, 0.1);
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Smooth momentum scrolling on iOS */
+.scrollbar-hide {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better text rendering on mobile */
+@media (max-width: 640px) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

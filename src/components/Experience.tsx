@@ -47,20 +47,20 @@ function ExperienceCard({
       </motion.div>
 
       {/* Content Card */}
-      <div className="pb-10">
-        <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-6 hover:border-[var(--accent)]/30 transition-all">
+      <div className="pb-8 sm:pb-10">
+        <div className="bg-[var(--bg-surface)] rounded-xl border border-[var(--border-subtle)] p-4 sm:p-6 hover:border-[var(--accent)]/30 transition-all">
           {/* Header */}
-          <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
-            <div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-2 sm:gap-3 mb-4">
+            <div className="flex-1 min-w-0">
+              <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                 {experience.title}
               </h3>
-              <p className="text-[var(--accent)] font-medium flex items-center gap-2">
-                <Briefcase size={14} />
+              <p className="text-[var(--accent)] font-medium flex items-center gap-2 text-sm sm:text-base">
+                <Briefcase size={14} className="flex-shrink-0" />
                 {experience.company}
               </p>
             </div>
-            <span className="px-3 py-1 text-sm bg-[var(--accent-muted)] text-[var(--accent)] rounded-full whitespace-nowrap">
+            <span className="self-start px-2.5 sm:px-3 py-1 text-xs sm:text-sm bg-[var(--accent-muted)] text-[var(--accent)] rounded-full whitespace-nowrap">
               {experience.startDate} - {experience.endDate}
             </span>
           </div>
@@ -68,20 +68,20 @@ function ExperienceCard({
           {/* Highlights */}
           <ul className="space-y-2 mb-4">
             {experience.highlights.map((highlight, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
-                <span className="text-[var(--accent)] mt-1 flex-shrink-0">&#8226;</span>
+              <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-[var(--text-secondary)]">
+                <span className="text-[var(--accent)] mt-0.5 sm:mt-1 flex-shrink-0">&#8226;</span>
                 {highlight}
               </li>
             ))}
           </ul>
 
           {/* Technologies */}
-          {experience.technologies && (
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-[var(--border-subtle)]">
+          {experience.technologies && experience.technologies.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-[var(--border-subtle)]">
               {experience.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-1 text-xs bg-[var(--border-subtle)] text-[var(--text-secondary)] rounded"
+                  className="px-2 py-1 text-[10px] sm:text-xs bg-[var(--border-subtle)] text-[var(--text-secondary)] rounded"
                 >
                   {tech}
                 </span>

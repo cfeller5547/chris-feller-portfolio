@@ -27,18 +27,18 @@ export function SectionHeading({
       className={`max-w-2xl ${align === 'center' ? 'mx-auto text-center' : 'text-left'}`}
     >
       {label && (
-        <span className="inline-block text-[var(--accent)] text-sm font-medium tracking-wider uppercase mb-4">
+        <span className="inline-block text-[var(--accent)] text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 sm:mb-4">
           {label}
         </span>
       )}
-      <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+      <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
         {title}
         {titleAccent && (
           <span className="italic text-[var(--accent)]"> {titleAccent}</span>
         )}
       </h2>
       {description && (
-        <p className="mt-4 text-[var(--text-secondary)] text-lg leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-[var(--text-secondary)] text-sm sm:text-base md:text-lg leading-relaxed">
           {description}
         </p>
       )}
