@@ -327,7 +327,7 @@ function FeaturedTile({
         bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f]
         border border-white/5 hover:border-white/20
         transition-all duration-300
-        ${isLarge ? 'h-full min-h-[420px]' : isMedium ? 'h-[200px]' : 'h-[160px]'}
+        ${isLarge ? 'h-full min-h-[420px]' : isMedium ? 'h-full min-h-[180px]' : 'h-[160px]'}
       `}
       style={{
         boxShadow: `0 0 0 1px ${style.primary}00, 0 0 30px ${style.primary}00`,
@@ -420,26 +420,28 @@ function FeaturedBentoGrid({
   const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-rotate spotlight every 8 seconds
+  // Auto-rotate spotlight every 8 seconds (limit to 3 projects)
+  const maxProjects = Math.min(projects.length, 3);
+
   useEffect(() => {
-    if (isPaused || projects.length <= 1) return;
+    if (isPaused || maxProjects <= 1) return;
 
     const interval = setInterval(() => {
-      setSpotlightIndex((prev) => (prev + 1) % projects.length);
+      setSpotlightIndex((prev) => (prev + 1) % maxProjects);
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [isPaused, projects.length]);
+  }, [isPaused, maxProjects]);
 
-  // Reorder projects so spotlight is first
+  // Reorder projects so spotlight is first (limit to 3 projects)
+  const limitedProjects = projects.slice(0, 3);
   const reorderedProjects = [
-    projects[spotlightIndex],
-    ...projects.filter((_, i) => i !== spotlightIndex),
+    limitedProjects[spotlightIndex],
+    ...limitedProjects.filter((_, i) => i !== spotlightIndex),
   ];
 
   const spotlight = reorderedProjects[0];
-  const mediums = reorderedProjects.slice(1, 3);
-  const smalls = reorderedProjects.slice(3, 6);
+  const others = reorderedProjects.slice(1, 3);
 
   return (
     <div
@@ -487,9 +489,9 @@ function FeaturedBentoGrid({
           </AnimatePresence>
         </div>
 
-        {/* Medium tiles - right column */}
-        <div className="lg:col-span-5 grid gap-4">
-          {mediums.map((project) => (
+        {/* Other tiles - right column stacked */}
+        <div className="lg:col-span-5 lg:row-span-2 grid grid-rows-2 gap-4">
+          {others.map((project) => (
             <FeaturedTile
               key={project.id}
               project={project}
@@ -498,23 +500,11 @@ function FeaturedBentoGrid({
             />
           ))}
         </div>
-
-        {/* Small tiles - bottom row */}
-        <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {smalls.map((project) => (
-            <FeaturedTile
-              key={project.id}
-              project={project}
-              variant="small"
-              onClick={() => onProjectClick(project)}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Progress Dots */}
       <div className="relative z-10 flex justify-center gap-2 pt-6">
-        {projects.map((_, index) => (
+        {projects.slice(0, 3).map((_, index) => (
           <button
             key={index}
             onClick={() => setSpotlightIndex(index)}
@@ -533,62 +523,55 @@ function FeaturedBentoGrid({
   );
 }
 
-// All Projects List Item (Compact format)
-function AllProjectsListItem({
+// All Projects Card Component
+function ProjectCard({
   project,
   onClick,
 }: {
   project: Project;
   onClick: () => void;
 }) {
+  const style = visualStyles[project.id] || { primary: '#00E676', secondary: '#00BFA5', pattern: 'chart' };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ backgroundColor: 'rgba(255,255,255,0.03)' }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
       onClick={onClick}
-      className="group cursor-pointer grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 md:gap-8 items-center py-5 px-5 bg-[#0a0a0a] rounded-xl border border-white/5 hover:border-white/15 transition-all"
+      className="group cursor-pointer rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/5 hover:border-white/20 transition-all duration-300"
+      style={{
+        boxShadow: `0 0 0 1px ${style.primary}00, 0 0 30px ${style.primary}00`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `0 0 0 1px ${style.primary}40, 0 0 40px ${style.primary}20`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = `0 0 0 1px ${style.primary}00, 0 0 30px ${style.primary}00`;
+      }}
     >
-      {/* Left: Title + Description */}
-      <div className="min-w-0">
-        <div className="flex items-center gap-3 mb-1">
-          <h3 className="font-medium text-white text-base group-hover:text-[#00E676] transition-colors">
-            {project.title}
-          </h3>
-          <span className="text-xs text-white/30">{project.year}</span>
-        </div>
-        <p className="text-white/40 text-sm line-clamp-1">
-          {project.description}
-        </p>
-      </div>
+      {/* Visual Banner */}
+      <div className="relative h-40 overflow-hidden">
+        <UniqueProjectVisual projectId={project.id} size="medium" />
 
-      {/* Right: Tags + Actions */}
-      <div className="flex items-center gap-4">
-        {/* Tags */}
-        <div className="hidden sm:flex gap-2">
-          {project.tags.slice(0, 2).map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-1 text-xs text-white/50 bg-white/5 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
+        {/* Year badge */}
+        <div className="absolute top-3 right-3 px-2 py-1 text-xs font-medium rounded-md bg-black/50 backdrop-blur-sm text-white/70">
+          {project.year}
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
+        {/* Hover overlay with actions */}
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="p-2 text-white/40 hover:text-[#00E676] transition-colors"
+              className="p-3 rounded-full bg-white/10 hover:bg-[var(--accent)] text-white hover:text-black transition-all"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
@@ -599,16 +582,41 @@ function AllProjectsListItem({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="p-2 text-white/40 hover:text-white transition-colors"
+              className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
               </svg>
             </a>
           )}
-          <svg className="w-4 h-4 text-white/20 group-hover:text-[#00E676] transition-colors ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5">
+        <h3 className="font-semibold text-white text-base mb-2 group-hover:text-[var(--accent)] transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-white/50 text-sm line-clamp-2 mb-4">
+          {project.description}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="px-2.5 py-1 text-xs rounded-full"
+              style={{ color: `${style.primary}cc`, background: `${style.primary}15` }}
+            >
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 3 && (
+            <span className="px-2.5 py-1 text-xs text-white/40 bg-white/5 rounded-full">
+              +{project.tags.length - 3}
+            </span>
+          )}
         </div>
       </div>
     </motion.div>
@@ -694,11 +702,11 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Project List */}
-          <div className="space-y-3">
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
               {allProjects.map((project) => (
-                <AllProjectsListItem
+                <ProjectCard
                   key={project.id}
                   project={project}
                   onClick={() => setSelectedProject(project)}

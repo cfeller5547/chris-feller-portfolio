@@ -20,9 +20,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left - Branding */}
           <div className="flex items-center gap-2">
-            <span className="font-[family-name:var(--font-display)] text-lg font-bold text-[var(--text-primary)] tracking-tight">
-              {personalInfo.name.split(' ')[0]}
-              <span className="text-[var(--accent)]">.</span>
+            <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">
+              <span className="text-[var(--accent)]">&lt;</span>
+              <span className="text-[var(--text-primary)]">cf</span>
+              <span className="text-[var(--accent)]">/&gt;</span>
             </span>
             <span className="text-sm text-[var(--text-secondary)]">
               &copy; {currentYear}

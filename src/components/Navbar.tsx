@@ -65,11 +65,13 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
-              className="font-[family-name:var(--font-display)] text-xl font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors tracking-tight"
+              className="relative group font-[family-name:var(--font-display)] text-xl font-bold tracking-tight"
               whileHover={{ scale: 1.02 }}
             >
-              {personalInfo.name.split(' ')[0]}
-              <span className="text-[var(--accent)]">.</span>
+              <span className="text-[var(--accent)]">&lt;</span>
+              <span className="text-[var(--text-primary)]">cf</span>
+              <span className="text-[var(--accent)]">/&gt;</span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
             </motion.a>
 
             {/* Desktop Navigation */}

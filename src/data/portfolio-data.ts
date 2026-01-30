@@ -34,7 +34,7 @@ export interface Experience {
 }
 
 export const personalInfo = {
-  name: 'Chris Anderson',
+  name: 'Chris Feller',
   title: 'Senior Full-Stack Engineer',
   tagline: 'Building performant, scalable applications that drive business impact',
   bio: "I'm a software engineer with 8+ years of experience shipping products that users love. I specialize in building full-stack applications with modern TypeScript, React, and Node.js, with a focus on clean architecture and exceptional user experiences.",

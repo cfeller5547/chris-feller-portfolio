@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Chris Anderson | Senior Full-Stack Engineer',
+  title: 'Chris Feller | Senior Full-Stack Engineer',
   description:
     'Senior Full-Stack Engineer specializing in building performant, scalable applications with React, TypeScript, and Node.js. 8+ years of experience shipping products that drive business impact.',
   keywords: [
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     'Backend Developer',
     'Web Developer',
   ],
-  authors: [{ name: 'Chris Anderson' }],
-  creator: 'Chris Anderson',
+  authors: [{ name: 'Chris Feller' }],
+  creator: 'Chris Feller',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://chrisanderson.dev',
-    siteName: 'Chris Anderson Portfolio',
-    title: 'Chris Anderson | Senior Full-Stack Engineer',
+    siteName: 'Chris Feller Portfolio',
+    title: 'Chris Feller | Senior Full-Stack Engineer',
     description:
       'Senior Full-Stack Engineer specializing in building performant, scalable applications with React, TypeScript, and Node.js.',
     images: [
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Chris Anderson - Senior Full-Stack Engineer',
+        alt: 'Chris Feller - Senior Full-Stack Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chris Anderson | Senior Full-Stack Engineer',
+    title: 'Chris Feller | Senior Full-Stack Engineer',
     description:
       'Senior Full-Stack Engineer specializing in building performant, scalable applications.',
     images: ['/og-image.png'],
