@@ -43,7 +43,9 @@ export default function Hero() {
 
     const initParticles = () => {
       particles = [];
-      const count = 60;
+      // Fewer particles on mobile for better performance
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 25 : 60;
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.offsetWidth,
@@ -203,7 +205,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-xl sm:text-2xl text-[var(--accent)] font-medium mb-4"
+                className="text-base sm:text-xl md:text-2xl text-[var(--accent)] font-medium mb-3 sm:mb-4 leading-relaxed"
               >
                 {personalInfo.title}
               </motion.p>
@@ -212,7 +214,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-lg text-[var(--text-secondary)] mb-8 max-w-xl mx-auto lg:mx-0"
+                className="text-base sm:text-lg text-[var(--text-secondary)] mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
               >
                 {personalInfo.tagline}
               </motion.p>
@@ -247,25 +249,25 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
-                className="flex gap-4 mt-8 justify-center lg:justify-start"
+                className="flex gap-2 mt-6 sm:mt-8 justify-center lg:justify-start"
               >
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                  className="p-3 text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--accent-muted)] rounded-lg transition-all active:scale-95"
                   aria-label="GitHub"
                 >
-                  <Github size={24} />
+                  <Github size={22} />
                 </a>
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                  className="p-3 text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--accent-muted)] rounded-lg transition-all active:scale-95"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={22} />
                 </a>
               </motion.div>
             </motion.div>

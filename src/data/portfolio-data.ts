@@ -43,9 +43,9 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/chris-feller-',
   location: 'San Diego, CA',
   stats: {
-    yearsExperience: '8+',
-    projectsShipped: '50+',
-    technologies: '25+',
+    yearsExperience: '2+',
+    projectsShipped: '10+',
+    technologies: '20+',
   },
   optimizesFor: [
     'Fast iteration without chaos (simple, repeatable workflows; good defaults)',

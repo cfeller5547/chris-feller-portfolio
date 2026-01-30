@@ -278,13 +278,18 @@ function ProjectModal({
         className="relative w-full max-w-3xl max-h-[90vh] overflow-auto rounded-2xl sm:rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] mx-2 sm:mx-4"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Swipe indicator for mobile */}
+        <div className="sm:hidden flex justify-center pt-3 pb-1">
+          <div className="w-10 h-1 rounded-full bg-white/20" />
+        </div>
+
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-all duration-300"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2.5 sm:p-2.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-all duration-300 active:scale-95"
           aria-label="Close modal"
         >
-          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+          <X className="w-5 h-5" />
         </button>
 
         {/* Image */}
