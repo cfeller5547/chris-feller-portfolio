@@ -103,10 +103,10 @@ export default function Experience() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <SectionHeading
-          label="Career"
-          title="Work"
-          titleAccent="Experience"
-          description="A track record of delivering impact through technology at companies of all sizes."
+          label="Journey"
+          title="Experience"
+          titleAccent="& Education"
+          description="From CS foundations to shipping real client work—building systems that scale and experiences that feel premium."
           align="center"
           isInView={isInView}
         />
