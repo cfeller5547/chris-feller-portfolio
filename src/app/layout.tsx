@@ -15,44 +15,46 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Chris Feller | Senior Full-Stack Engineer',
+  title: 'Chris Feller | Applied AI Engineer & Full-Stack Developer',
   description:
-    'Senior Full-Stack Engineer specializing in building performant, scalable applications with React, TypeScript, and Node.js. 8+ years of experience shipping products that drive business impact.',
+    'Applied AI Engineer building products with GenAI at the core. Full-stack developer with 3+ years of experience shipping reliable, scalable applications.',
   keywords: [
-    'Software Engineer',
+    'AI Engineer',
+    'LLM Applications',
     'Full-Stack Developer',
+    'GenAI',
     'React',
     'TypeScript',
     'Node.js',
     'Next.js',
-    'Frontend Developer',
-    'Backend Developer',
-    'Web Developer',
+    'Software Engineer',
+    'San Diego',
   ],
   authors: [{ name: 'Chris Feller' }],
   creator: 'Chris Feller',
+  metadataBase: new URL('https://christopherfeller.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://chrisanderson.dev',
+    url: 'https://christopherfeller.com',
     siteName: 'Chris Feller Portfolio',
-    title: 'Chris Feller | Senior Full-Stack Engineer',
+    title: 'Chris Feller | Applied AI Engineer & Full-Stack Developer',
     description:
-      'Senior Full-Stack Engineer specializing in building performant, scalable applications with React, TypeScript, and Node.js.',
+      'Applied AI Engineer building products with GenAI at the core. Full-stack developer shipping reliable, scalable applications.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Chris Feller - Senior Full-Stack Engineer',
+        alt: 'Chris Feller - Applied AI Engineer & Full-Stack Developer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chris Feller | Senior Full-Stack Engineer',
+    title: 'Chris Feller | Applied AI Engineer & Full-Stack Developer',
     description:
-      'Senior Full-Stack Engineer specializing in building performant, scalable applications.',
+      'Applied AI Engineer building products with GenAI at the core.',
     images: ['/og-image.png'],
   },
   robots: {
