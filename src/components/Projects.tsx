@@ -6,7 +6,7 @@ import { projects, categories, type Project } from '@/data/portfolio-data';
 import { SectionHeading } from './ui/SectionHeading';
 import { ArrowUpRight, Github, ExternalLink, X, Sparkles } from 'lucide-react';
 
-// Video Thumbnail Component - muted autoplay loop for cards
+// Video Thumbnail Component - muted autoplay loop for cards, plays when visible
 function VideoThumbnail({
   src,
   poster,
@@ -17,26 +17,47 @@ function VideoThumbnail({
   className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const container = containerRef.current;
+    if (!video || !container) return;
 
-    // Play video when it's ready
+    // Handle video ready state
     const handleCanPlay = () => {
       setIsLoaded(true);
-      video.play().catch(() => {
-        // Autoplay blocked - that's okay, poster will show
-      });
     };
 
     video.addEventListener('canplay', handleCanPlay);
-    return () => video.removeEventListener('canplay', handleCanPlay);
+
+    // Use IntersectionObserver to play/pause based on visibility
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Autoplay blocked - poster will show
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25 } // Play when 25% visible
+    );
+
+    observer.observe(container);
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <>
+    <div ref={containerRef} className="absolute inset-0">
       {/* Poster image shown until video loads */}
       {!isLoaded && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -53,10 +74,10 @@ function VideoThumbnail({
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         className={`w-full h-full object-cover object-top ${className} ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
       />
-    </>
+    </div>
   );
 }
 
