@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   longDescription?: string;
   thumbnail: string;
+  videoUrl?: string;
   tags: string[];
   category: 'web' | 'ai' | 'saas';
   featured: boolean;
@@ -74,6 +75,7 @@ export const projects: Project[] = [
     description: 'Co-founded startup automating comp exams and treatment planning for dentists using OpenDental.',
     longDescription: 'As a co-founder, I built software that automated dental exams and treatment planning for dentists using OpenDental. We had 30 beta testers across dental offices. The backend uses SQL Server and .NET/C# with Entity Framework; the frontend is React. Key features include a treatment planner that creates interactive/customizable plans and "smart notes" that use the OpenAI Whisper API to turn spoken notes into structured SOAP notes.',
     thumbnail: '/projects/049af00b-2227-46c4-bcf2-150b12d2f804.png',
+    videoUrl: 'https://christopherfeller-videos.s3.us-east-1.amazonaws.com/newbetavid.mp4',
     tags: ['.NET', 'C#', 'Entity Framework', 'React', 'SQL', 'OpenAI Whisper', 'Next.js'],
     category: 'saas',
     featured: true,

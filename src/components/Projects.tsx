@@ -1,10 +1,64 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { projects, categories, type Project } from '@/data/portfolio-data';
 import { SectionHeading } from './ui/SectionHeading';
 import { ArrowUpRight, Github, ExternalLink, X, Sparkles } from 'lucide-react';
+
+// Video Thumbnail Component - muted autoplay loop for cards
+function VideoThumbnail({
+  src,
+  poster,
+  className,
+}: {
+  src: string;
+  poster: string;
+  className?: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Play video when it's ready
+    const handleCanPlay = () => {
+      setIsLoaded(true);
+      video.play().catch(() => {
+        // Autoplay blocked - that's okay, poster will show
+      });
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    return () => video.removeEventListener('canplay', handleCanPlay);
+  }, []);
+
+  return (
+    <>
+      {/* Poster image shown until video loads */}
+      {!isLoaded && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={poster}
+          alt=""
+          className={`absolute inset-0 w-full h-full object-cover object-top ${className}`}
+        />
+      )}
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className={`w-full h-full object-cover object-top ${className} ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
+      />
+    </>
+  );
+}
 
 // Bento Card Component - Featured Projects
 function BentoCard({
@@ -43,14 +97,22 @@ function BentoCard({
         onClick={onClick}
         className="relative h-full overflow-hidden cursor-pointer rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] transition-all duration-300 hover:border-[var(--accent)]/40 hover:translate-y-[-4px] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_30px_var(--accent-glow)]"
       >
-        {/* Image */}
+        {/* Image/Video */}
         <div className={`relative overflow-hidden ${aspectClasses[size]}`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-          />
+          {project.videoUrl ? (
+            <VideoThumbnail
+              src={project.videoUrl}
+              poster={project.thumbnail}
+              className="transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+          )}
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-[var(--bg-surface)]/80 to-transparent opacity-90" />
 
@@ -140,14 +202,22 @@ function ProjectCard({
         onClick={onClick}
         className="group relative overflow-hidden cursor-pointer h-full rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] transition-all duration-300 hover:border-[var(--accent)]/30 hover:translate-y-[-4px] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5),0_0_30px_var(--accent-glow)]"
       >
-        {/* Image */}
+        {/* Image/Video */}
         <div className="relative aspect-[4/3] overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-          />
+          {project.videoUrl ? (
+            <VideoThumbnail
+              src={project.videoUrl}
+              poster={project.thumbnail}
+              className="transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+          )}
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-[var(--bg-surface)]/60 to-transparent" />
 
@@ -292,15 +362,29 @@ function ProjectModal({
           <X className="w-5 h-5" />
         </button>
 
-        {/* Image */}
+        {/* Image/Video */}
         <div className="relative aspect-[16/10] sm:aspect-video">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent" />
+          {project.videoUrl ? (
+            <video
+              src={project.videoUrl}
+              poster={project.thumbnail}
+              controls
+              playsInline
+              className="w-full h-full object-cover object-top bg-black"
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover object-top"
+            />
+          )}
+          {!project.videoUrl && (
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent" />
+          )}
         </div>
 
         {/* Content */}
