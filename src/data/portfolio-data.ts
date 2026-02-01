@@ -168,6 +168,8 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Google AI Studio', level: 'Core' },
       { name: 'Claude', level: 'Core' },
       { name: 'ChatGPT', level: 'Core' },
+      { name: 'OpenAI API', level: 'Core' },
+      { name: 'Gemini API', level: 'Core' },
       { name: 'Codex', level: 'Strong' },
       { name: 'Lovable', level: 'Core' },
       { name: 'Replit', level: 'Strong' },
