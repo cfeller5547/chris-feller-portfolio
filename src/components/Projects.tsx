@@ -17,47 +17,25 @@ function VideoThumbnail({
   className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(videoRef, { once: false, amount: 0.3 });
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Play/pause based on visibility
   useEffect(() => {
     const video = videoRef.current;
-    const container = containerRef.current;
-    if (!video || !container) return;
+    if (!video) return;
 
-    // Handle video ready state
-    const handleCanPlay = () => {
-      setIsLoaded(true);
-    };
-
-    video.addEventListener('canplay', handleCanPlay);
-
-    // Use IntersectionObserver to play/pause based on visibility
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Autoplay blocked - poster will show
-            });
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.25 } // Play when 25% visible
-    );
-
-    observer.observe(container);
-
-    return () => {
-      video.removeEventListener('canplay', handleCanPlay);
-      observer.disconnect();
-    };
-  }, []);
+    if (isInView) {
+      video.play().catch(() => {
+        // Autoplay blocked - poster will show
+      });
+    } else {
+      video.pause();
+    }
+  }, [isInView]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0">
+    <>
       {/* Poster image shown until video loads */}
       {!isLoaded && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -75,9 +53,10 @@ function VideoThumbnail({
         loop
         playsInline
         preload="auto"
+        onLoadedData={() => setIsLoaded(true)}
         className={`w-full h-full object-cover object-top ${className} ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
       />
-    </div>
+    </>
   );
 }
 
