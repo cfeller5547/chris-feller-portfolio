@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Mail } from 'lucide-react';
+import { Menu, X, Download, Mail } from 'lucide-react';
 import { personalInfo } from '@/data/portfolio-data';
 
 const navLinks = [
@@ -100,14 +100,22 @@ export default function Navbar() {
 
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center gap-3">
-              <motion.a
+              <a
                 href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                <Mail size={16} />
+                <span>Email Me</span>
+              </a>
+              <motion.a
+                href="/chris-feller-resume-01312026.docx"
+                download
                 className="flex items-center gap-2 px-4 py-2 text-sm bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-medium hover:shadow-lg transition-all"
                 whileHover={{ scale: 1.02, boxShadow: '0 0 20px var(--accent-glow)' }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Mail size={16} />
-                <span>Email Me</span>
+                <Download size={16} />
+                <span>Resume</span>
               </motion.a>
             </div>
 
@@ -162,10 +170,18 @@ export default function Navbar() {
               <div className="mt-8 flex flex-col gap-3">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center justify-center gap-2 px-4 py-3 text-sm bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-medium"
+                  className="flex items-center justify-center gap-2 px-4 py-3 text-sm border border-[var(--border-subtle)] rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] transition-all"
                 >
                   <Mail size={16} />
                   <span>Email Me</span>
+                </a>
+                <a
+                  href="/chris-feller-resume-01312026.docx"
+                  download
+                  className="flex items-center justify-center gap-2 px-4 py-3 text-sm bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-medium"
+                >
+                  <Download size={16} />
+                  <span>Download Resume</span>
                 </a>
               </div>
             </motion.div>
