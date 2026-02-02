@@ -167,6 +167,7 @@ export const skillCategories: SkillCategory[] = [
   {
     name: 'AI Tools',
     skills: [
+      { name: 'Prompt Engineering', level: 'Core' },
       { name: 'Google AI Studio', level: 'Core' },
       { name: 'Claude Code', level: 'Core' },
       { name: 'ChatGPT', level: 'Core' },
