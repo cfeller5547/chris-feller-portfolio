@@ -192,6 +192,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Flutter', level: 'Core' },
       { name: 'JavaScript', level: 'Core' },
       { name: 'SEO', level: 'Core' },
+      { name: 'Shadcn', level: 'Core' },
     ],
   },
   {

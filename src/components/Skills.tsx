@@ -76,6 +76,11 @@ const techIcons: Record<string, React.ReactNode> = {
       <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
     </svg>
   ),
+  'Shadcn': (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22.219 11.784L11.784 22.219a1.045 1.045 0 0 0 1.476 1.476L23.695 13.26a1.045 1.045 0 0 0-1.476-1.476zM20.132.305L.305 20.132a1.045 1.045 0 0 0 1.476 1.476L21.608 1.781A1.045 1.045 0 0 0 20.132.305z"/>
+    </svg>
+  ),
   // Frontend
   'React': (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
