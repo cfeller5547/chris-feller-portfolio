@@ -6,7 +6,7 @@ export interface Project {
   thumbnail: string;
   videoUrl?: string;
   tags: string[];
-  category: 'web' | 'ai' | 'saas';
+  category: ('ai' | 'saas' | 'client')[];
   featured: boolean;
   liveUrl?: string;
   githubUrl?: string;
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     longDescription: 'RAGOps Lab is an end-to-end platform that combines agentic Retrieval-Augmented Generation, a built-in evaluation harness, and full observability into a single deployable service. It ingests documents (PDF/text), chunks and embeds them into pgvector, then answers questions with verifiable citations — refusing when evidence is insufficient. The evaluation engine scores every run across 5+ metrics (groundedness, hallucination rate, schema compliance, tool correctness, latency/cost) with 200+ test cases, run-vs-run diffing, and failure taxonomy. Every agent step is traced as OpenTelemetry spans with full replay capability for debugging. A GitHub Actions pipeline fails PRs automatically when eval scores regress. Guardrails include PII redaction, citation-or-refuse policy, and configurable cost caps. Built with FastAPI, LangChain, OpenAI, pgvector, and Gradio, deployed via Docker.',
     thumbnail: '/projects/ragops-lab.png',
     tags: ['Python', 'FastAPI', 'LangChain', 'OpenAI', 'pgvector', 'Docker', 'Gradio'],
-    category: 'ai',
+    category: ['ai'],
     featured: false,
     githubUrl: 'https://github.com/cfeller5547/rag-ops-lab',
     year: 2025,
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     longDescription: 'As the managing developer, I oversee the entire development and operations lifecycle of the Colonize Media App—a production-ready music distribution platform built on Laravel 11 and AWS. The infrastructure includes load-balanced EC2 clusters for web servers, job processing, and microservices, with SingleStore as the distributed SQL database. I manage deployments via Laravel Forge and Envoyer, implement new features, handle AWS S3 for media storage with CDN delivery, and maintain monitoring through Laravel Pulse and CloudWatch. The platform supports 18,000+ artists, manages 300,000+ tracks, and generates over 1.2 billion monthly streams across Spotify, Apple Music, and YouTube.',
     thumbnail: '/projects/colonize-media.png',
     tags: ['Laravel', 'AWS', 'SingleStore', 'PHP', 'EC2', 'S3', 'CloudWatch'],
-    category: 'saas',
+    category: ['saas', 'client'],
     featured: true,
     year: 2024,
     impactMetric: '1.2B+ monthly streams',
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     thumbnail: '/projects/049af00b-2227-46c4-bcf2-150b12d2f804.png',
     videoUrl: 'https://christopherfeller-videos.s3.us-east-1.amazonaws.com/newbetavid.mp4',
     tags: ['.NET', 'C#', 'Entity Framework', 'React', 'SQL', 'OpenAI Whisper', 'Next.js'],
-    category: 'saas',
+    category: ['saas', 'ai'],
     featured: true,
     year: 2024,
     impactMetric: '30 beta testers',
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     longDescription: 'Working alongside another developer, I developed the Windows desktop app to replace an outdated organ-voice editor. Built with Flutter and Dart, it lets organ makers design and edit organ voices using a modern interface. The app communicates directly with the organ hardware via a REST API so pipe organ professionals can hear changes instantly.',
     thumbnail: '/projects/8695bd07-3bc8-48c5-87ed-b80d1e561f9f.png',
     tags: ['Flutter', 'Dart', 'SQLite', 'REST API', 'Windows Desktop'],
-    category: 'saas',
+    category: ['client'],
     featured: true,
     githubUrl: 'https://github.com/chrisfeller/allen-organ-audio-editor',
     year: 2023,
@@ -115,7 +115,7 @@ export const projects: Project[] = [
     longDescription: 'I built a corporate website for Tax Control Strategies using HubSpot CMS. Starting from the designer\'s mockups, I created custom modules with CSS, JavaScript, HTML and HubL and ensured the site is fully responsive.',
     thumbnail: '/projects/ce7632b5-a5f1-488a-8108-c9ac29ec50d9.png',
     tags: ['HubSpot CMS', 'CSS', 'JavaScript', 'HTML', 'HUBL', 'Responsive Design'],
-    category: 'web',
+    category: ['client'],
     featured: false,
     liveUrl: 'https://taxcontrolstrategies.com/',
     year: 2024,
@@ -128,7 +128,7 @@ export const projects: Project[] = [
     longDescription: 'A jurisdiction-aware compliance engine for security deposit dispositions. The app takes a property address and move-out facts, then generates exact deadlines, interest calculations, court-ready notices, and defensible proof packets. Features include automatic jurisdiction detection for state and city rules, AI-powered deduction risk assessment using Google Gemini, PDF generation for notices and itemized statements, proof packet export with audit trails, and email reminders before deadlines. Built with Next.js 16, Supabase (PostgreSQL + Auth + Storage), Prisma ORM, and React PDF.',
     thumbnail: '/projects/landlord-comply.png',
     tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Prisma', 'Google Gemini', 'React PDF'],
-    category: 'saas',
+    category: ['saas', 'ai'],
     featured: false,
     liveUrl: 'https://landlordcomply.com',
     year: 2025,
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     longDescription: 'A tool that helps website owners understand their site structure and find better keywords. You enter a website address and it draws a tree of all the pages. It shows the keywords each page targets and suggests new ones. It uses Flask on the backend with a MongoDB database on Azure and a C# Azure Function for fast sitemap parsing.',
     thumbnail: '/projects/d9e3ef00-7c62-472c-ae90-65af83e48e91.png',
     tags: ['Flask', 'MongoDB', 'Azure Functions', 'C#', 'Google Search Console API', 'Google PaLM/Gemini'],
-    category: 'ai',
+    category: ['ai'],
     featured: false,
     year: 2023,
   },
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     longDescription: 'While working for Seamgen I built the web app "Carbon Tools" for the U.S. Endowment, a non-profit focused on sustainable forestry. One tool calculates the carbon footprint of wood products, and the other compares wood to other materials so users can see the environmental impact.',
     thumbnail: '/projects/de2850cf-60c5-4234-b644-78d5d4536eda.png',
     tags: ['React', 'TypeScript', 'MUI', 'Supabase'],
-    category: 'web',
+    category: ['saas', 'client'],
     featured: false,
     year: 2023,
   },
@@ -163,7 +163,7 @@ export const projects: Project[] = [
     longDescription: 'I worked with a team to build a reporting dashboard for MeasurePM. The dashboard uses React and Recharts to display data and connects to existing APIs.',
     thumbnail: '/projects/c4aa96ed-1dc7-4774-ac7a-7767111c414e.png',
     tags: ['React', 'Recharts', 'JavaScript', 'API Integration', 'Agile/Scrum'],
-    category: 'saas',
+    category: ['client'],
     featured: false,
     year: 2024,
   },
@@ -171,9 +171,9 @@ export const projects: Project[] = [
 
 export const categories = [
   { id: 'all', label: 'All Projects' },
-  { id: 'web', label: 'Web' },
+  { id: 'ai', label: 'AI & LLM' },
   { id: 'saas', label: 'SaaS' },
-  { id: 'ai', label: 'AI/ML' },
+  { id: 'client', label: 'Client Work' },
 ] as const;
 
 export const skillCategories: SkillCategory[] = [

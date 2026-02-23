@@ -469,7 +469,7 @@ export default function Projects() {
   const featuredProjects = projects.filter((p) => p.featured);
   const allProjects = selectedCategory === 'all'
     ? projects
-    : projects.filter((p) => p.category === selectedCategory);
+    : projects.filter((p) => p.category.includes(selectedCategory as 'ai' | 'saas' | 'client'));
 
   // Assign bento sizes to featured projects
   const bentoSizes: ('large' | 'tall' | 'wide' | 'normal')[] = ['large', 'tall', 'wide'];
