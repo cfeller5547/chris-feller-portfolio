@@ -58,6 +58,19 @@ export const personalInfo = {
 
 export const projects: Project[] = [
   {
+    id: 'ragops-lab',
+    title: 'RAGOps Lab',
+    description: 'Production-grade RAG platform with agentic retrieval, a multi-metric evaluation harness, full tracing/replay, and CI regression gating — built to show how LLM apps should ship.',
+    longDescription: 'RAGOps Lab is an end-to-end platform that combines agentic Retrieval-Augmented Generation, a built-in evaluation harness, and full observability into a single deployable service. It ingests documents (PDF/text), chunks and embeds them into pgvector, then answers questions with verifiable citations — refusing when evidence is insufficient. The evaluation engine scores every run across 5+ metrics (groundedness, hallucination rate, schema compliance, tool correctness, latency/cost) with 200+ test cases, run-vs-run diffing, and failure taxonomy. Every agent step is traced as OpenTelemetry spans with full replay capability for debugging. A GitHub Actions pipeline fails PRs automatically when eval scores regress. Guardrails include PII redaction, citation-or-refuse policy, and configurable cost caps. Built with FastAPI, LangChain, OpenAI, pgvector, and Gradio, deployed via Docker.',
+    thumbnail: '/projects/ragops-lab.png',
+    tags: ['Python', 'FastAPI', 'LangChain', 'OpenAI', 'pgvector', 'Docker', 'Gradio'],
+    category: 'ai',
+    featured: false,
+    githubUrl: 'https://github.com/cfeller5547/rag-ops-lab',
+    year: 2025,
+    impactMetric: '5+ eval metrics • Full tracing & CI gating',
+  },
+  {
     id: 'colonize-media',
     title: 'Colonize Media Platform',
     description: 'Music distribution and rights management platform serving 18,000+ artists with 1.2B+ monthly streams.',
