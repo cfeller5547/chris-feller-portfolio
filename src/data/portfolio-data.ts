@@ -66,7 +66,7 @@ export const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'React', 'TypeScript', 'OpenAI', 'pgvector', 'Docker'],
     category: ['ai'],
     featured: false,
-    liveUrl: 'https://ragops-lab.onrender.com',
+    liveUrl: 'https://rag-ops-lab.onrender.com',
     githubUrl: 'https://github.com/cfeller5547/rag-ops-lab',
     year: 2025,
     impactMetric: '5 eval metrics • 50 test cases • CI gating',
