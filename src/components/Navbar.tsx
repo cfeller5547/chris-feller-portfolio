@@ -108,7 +108,7 @@ export default function Navbar() {
                 <span>Email Me</span>
               </a>
               <motion.a
-                href="/chris-feller-resume-01312026.docx"
+                href="/chris-feller-resume-02232026.docx"
                 download
                 className="flex items-center gap-2 px-4 py-2 text-sm bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-medium hover:shadow-lg transition-all"
                 whileHover={{ scale: 1.02, boxShadow: '0 0 20px var(--accent-glow)' }}
@@ -176,7 +176,7 @@ export default function Navbar() {
                   <span>Email Me</span>
                 </a>
                 <a
-                  href="/chris-feller-resume-01312026.docx"
+                  href="/chris-feller-resume-02232026.docx"
                   download
                   className="flex items-center justify-center gap-2 px-4 py-3 text-sm bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-medium"
                 >
