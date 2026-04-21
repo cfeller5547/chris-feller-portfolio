@@ -125,10 +125,10 @@ export const projects: Project[] = [
   {
     id: 'landlord-comply',
     title: 'LandlordComply',
-    description: 'SaaS compliance tool helping landlords navigate security deposit return laws with jurisdiction-aware rules.',
-    longDescription: 'A jurisdiction-aware compliance engine for security deposit dispositions. The app takes a property address and move-out facts, then generates exact deadlines, interest calculations, court-ready notices, and defensible proof packets. Features include automatic jurisdiction detection for state and city rules, AI-powered deduction risk assessment using Google Gemini, PDF generation for notices and itemized statements, proof packet export with audit trails, and email reminders before deadlines. Built with Next.js 16, Supabase (PostgreSQL + Auth + Storage), Prisma ORM, and React PDF.',
+    description: 'Node.js and PostgreSQL SaaS app helping landlords follow security deposit rules with location-aware logic.',
+    longDescription: 'LandlordComply is a jurisdiction-aware compliance app for security deposit dispositions. The app takes a property address and move-out facts, then generates exact deadlines, interest calculations, court-ready notices, and defensible proof packets. Features include automatic state and city rule detection, AI-powered deduction risk assessment using Google Gemini, PDF generation for notices and itemized statements, proof packet export with audit trails, and email reminders before deadlines. Built with a Next.js 16 / Node.js stack, Supabase PostgreSQL, Prisma ORM, and React PDF.',
     thumbnail: '/projects/landlord-comply.png',
-    tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Prisma', 'Google Gemini', 'React PDF'],
+    tags: ['Node.js', 'Next.js', 'PostgreSQL', 'TypeScript', 'Supabase', 'Prisma', 'Google Gemini', 'React PDF'],
     category: ['saas', 'ai'],
     featured: false,
     liveUrl: 'https://landlordcomply.com',
@@ -226,6 +226,7 @@ export const skillCategories: SkillCategory[] = [
     name: 'Database',
     skills: [
       { name: 'MySQL', level: 'Core' },
+      { name: 'PostgreSQL', level: 'Strong' },
       { name: 'MongoDB', level: 'Strong' },
       { name: 'Firebase', level: 'Strong' },
       { name: 'Supabase', level: 'Core' },
