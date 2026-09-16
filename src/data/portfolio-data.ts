@@ -58,6 +58,20 @@ export const personalInfo = {
 
 export const projects: Project[] = [
   {
+    id: 'azar-soccer-academy',
+    title: 'Azar Soccer Academy',
+    description: 'Soccer coaching platform used by 30+ families to book sessions, buy packages, manage credits, and read coaching recaps.',
+    longDescription: 'I designed and built the Azar Soccer Academy website and booking platform. More than 30 families use it to book lessons, buy packages, use session credits, and read coaching recaps. The coach can manage the calendar, player records, rescheduling, and cancellations from one place. Built with React, Node.js, Supabase, PostgreSQL, and Stripe, and deployed on Vercel.',
+    thumbnail: '/projects/azar-soccer-academy.jpg',
+    tags: ['React', 'Vite', 'Node.js', 'PostgreSQL', 'Supabase', 'Stripe', 'Vercel', 'Playwright'],
+    category: ['saas', 'client'],
+    featured: false,
+    liveUrl: 'https://azarsocceracademy.vercel.app',
+    githubUrl: 'https://github.com/cfeller5547/soccer-coaching-platform',
+    year: 2026,
+    impactMetric: 'Used by 30+ families',
+  },
+  {
     id: 'ragops-lab',
     title: 'RAGOps Lab',
     description: 'Production-grade RAG platform with agentic retrieval, a multi-metric evaluation harness, full tracing and cost tracking, and CI regression gating — built to show how LLM apps should ship.',
