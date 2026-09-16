@@ -67,7 +67,6 @@ export const projects: Project[] = [
     category: ['saas', 'client'],
     featured: false,
     liveUrl: 'https://azarsocceracademy.vercel.app',
-    githubUrl: 'https://github.com/cfeller5547/soccer-coaching-platform',
     year: 2026,
     impactMetric: 'Used by 30+ families',
   },
